@@ -10,6 +10,7 @@ architecture, and SQL proficiency.
 ## Project Structure
 ecommerce_analysis/
 ├── modules/
+
 │ ├── config.py # paths and environment settings
 │ ├── db.py # database connection and query helpers
 │ ├── validate.py # data quality checks
@@ -19,12 +20,17 @@ ecommerce_analysis/
 │ ├── orders.py # order-level behavioral analysis
 │ ├── exports.py # XLSX and snapshot exports
 │ └── visualize.py # plotting utilities
+
 ├── outputs/
+
 │ ├── figures/ # generated charts (gitignored)
 │ └── reports/ # data quality reports (gitignored)
+
 ├── data/
+
 │ ├── raw/ # source CSVs (gitignored)
 │ └── exports/ # Tableau-ready XLSX (gitignored)
+
 ├── main.py # pipeline orchestrator
 ├── requirements.txt
 └── README.md
