@@ -21,4 +21,4 @@ venv/
 Thumbs.db
 
 # Outputs — optional, depends if you want charts on GitHub
-outputs/
+outputs/.idea/
