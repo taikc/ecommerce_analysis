@@ -1,4 +1,4 @@
-# Data files — never upload personal data to GitHub
+# Data files
 data/raw/
 data/exports/
 *.db
@@ -6,13 +6,16 @@ data/exports/
 *.xlsx
 *.xls
 
+# PyCharm 
+.idea/
+
 # Python
 __pycache__/
 *.pyc
 *.pyo
 .env
 
-# Virtual Environment
+# Virtual environment
 venv/
 .venv/
 
