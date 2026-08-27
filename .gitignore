@@ -5,6 +5,7 @@ data/exports/
 *.csv
 *.xlsx
 *.xls
+*.png
 
 # PyCharm 
 .idea/
