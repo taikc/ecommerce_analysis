@@ -65,15 +65,15 @@ Selected highlights:
 ## Dataset
 
 Synthetic e-commerce dataset comprising four tables:
-
+```text
 | Table |      Rows |     Grain |
 | `product_summary` | 140 | One row per product |
 | `customers` | 8,000 | One row per customer |
 | `orders` | 25,000 | One row per transaction |
 | `monthly_revenue` | 75 | One row per month |
-
+```
 Data is not included in this repository. To reproduce:
-1. Download the dataset from Kaggle [link][(https://www.kaggle.com/datasets/meruvakodandasuraj/e-commerce-customer-behavior-and-sales-20202026/)]
+1. Download the dataset from Kaggle [link](https://www.kaggle.com/datasets/meruvakodandasuraj/e-commerce-customer-behavior-and-sales-20202026/)
 Or via kagglehub ("meruvakodandasuraj/e-commerce-customer-behavior-and-sales-20202026")
 2. Place CSV files in `data/raw/`
 3. Run `python setup_db.py` to build the SQLite database
