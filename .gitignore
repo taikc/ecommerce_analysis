@@ -20,5 +20,5 @@ venv/
 .DS_Store
 Thumbs.db
 
-# Outputs — optional, depends if you want charts on GitHub
+# Outputs
 outputs/
