@@ -8,6 +8,7 @@ architecture, and SQL proficiency.
 ---
 
 ## Project Structure
+```text
 ecommerce_analysis/
 ├── modules/
 │   ├── config.py       # paths and environment settings
@@ -23,6 +24,7 @@ ecommerce_analysis/
 ├── setup_db.py         # builds SQLite database from CSVs
 ├── requirements.txt
 └── README.md
+```
 
 ---
 
