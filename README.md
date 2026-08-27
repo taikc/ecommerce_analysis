@@ -9,28 +9,20 @@ architecture, and SQL proficiency.
 
 ## Project Structure
 ecommerce_analysis/
-/modules/
-config.py # paths and environment settings 
-db.py # database connection and query helpers
-validate.py # data quality checks
-products.py # product performance analysis
-customers.py # customer segmentation and churn
-ltv.py # lifetime value pipeline
-orders.py # order-level behavioral analysis
-exports.py # XLSX and snapshot exports
-visualize.py # plotting utilities
-
-/outputs/
-figures/ # generated charts (gitignored)
-reports/ # data quality reports (gitignored)
-
-/data/
-raw/ # source CSVs (gitignored)
-exports/ # Tableau-ready XLSX (gitignored)
-
-main.py # pipeline orchestrator
-requirements.txt
-README.md
+├── modules/
+│   ├── config.py       # paths and environment settings
+│   ├── db.py           # database connection and query helpers
+│   ├── validate.py     # data quality checks
+│   ├── products.py     # product performance analysis
+│   ├── customers.py    # customer segmentation and churn
+│   ├── ltv.py          # lifetime value pipeline
+│   ├── orders.py       # order-level behavioral analysis
+│   ├── exports.py      # XLSX and snapshot exports
+│   └── visualize.py    # plotting utilities
+├── main.py             # pipeline orchestrator
+├── setup_db.py         # builds SQLite database from CSVs
+├── requirements.txt
+└── README.md
 
 ---
 
