@@ -30,6 +30,7 @@ from modules.ltv       import run_ltv_pipeline
 from modules.orders    import run_order_analysis
 from modules.exports   import export_tables_to_xlsx, export_ltv_snapshot
 from modules.db        import get_connection
+from modules.anomaly   import run_anomaly_detection
 
 # ── helpers ───────────────────────────────────────────────────────────────────
 def section(title):
@@ -89,8 +90,15 @@ def stage_orders():
     print(f"\nOrder analysis completed in {elapsed(start)}")
     return results
 
+def stage_anomaly():
+    section("STAGE 5 — ANOMALY DETECTION")
+    start = time.time()
+    df, flagged = run_anomaly_detection()
+    print(f"\nAnomaly detection completed in {elapsed(start)}")
+    return df, flagged
+
 def stage_exports(ltv_df, ltv_aggs):
-    section("STAGE 5 — EXPORTS")
+    section("STAGE 6 — EXPORTS")
     start = time.time()
 
     # XLSX for Tableau
@@ -121,6 +129,12 @@ def parse_args():
         action='store_true',
         help='Skip export stage'
     )
+    parser.add_argument(
+        '--anomaly',
+        action='store_true',
+        help='Run anomaly detection addendum'
+    )
+
     return parser.parse_args()
 
 # ── entry point ───────────────────────────────────────────────────────────────
@@ -156,6 +170,9 @@ def main():
     product_results  = stage_products()
     customer_results = stage_customers()
     order_results    = stage_orders()
+
+    if args.anomaly:
+        anomaly_df, flagged = stage_anomaly()
 
     if not args.skip_exports:
         stage_exports(
