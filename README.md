@@ -20,45 +20,12 @@ ecommerce_analysis/
 │   ├── orders.py       # order-level behavioral analysis
 │   ├── exports.py      # XLSX and snapshot exports
 │   └── visualize.py    # plotting utilities
+│   └── anomaly.py      # anomaly detection
 ├── main.py             # pipeline orchestrator
 ├── setup_db.py         # builds SQLite database from CSVs
 ├── requirements.txt
 └── README.md
 ```
-
----
-
-## Business Questions
-
-**Products**
-- Does order volume predict revenue, or does price tier explain divergence?
-- Does discounting drive order volume, or compress margin without demand impact?
-- Which products are structurally viable across quality, return rate, and revenue?
-
-**Customers**
-- Which market, age, and gender segments generate the highest lifetime value (LTV)?
-- Does membership tier correlate with retention quality?
-- What behavioral signals predict churn most reliably?
-
-**Orders**
-- Which temporal patterns drive revenue concentration?
-- Do session depth and engagement predict order value?
-- Are return rate differences across categories statistically significant?
-
----
-
-## Key Findings
-
-Full analytical narrative and methodology available in the 
-[Kaggle notebook]([link](https://www.kaggle.com/code/taikchiba/e-commerce-data-analysis)).
-
-Selected highlights:
-- Discounting shows no significant demand effect across 13 of 14 
-  categories — the exception (Jewelry) shows a negative correlation
-- Gold tier customers churn at higher rates than Free tier despite 
-  34% higher average spend
-- Recency dominates churn prediction; satisfaction signals add 
-  marginal independent value
 
 ---
 
@@ -112,11 +79,19 @@ python main.py --module products
 python main.py --module customers
 python main.py --module orders
 python main.py --module validate
+python main.py --module anomaly
 
 # Skip stages
 python main.py --skip-validate
 python main.py --skip-exports
 ```
+
+---
+
+## Tools
+
+Python · SQLite · DBeaver · pandas · matplotlib · seaborn · 
+scipy · scikit-learn · statsmodels · Git
 
 ---
 
@@ -135,10 +110,37 @@ python main.py --skip-exports
 
 ---
 
-## Tools
+## Business Questions
 
-Python · SQLite · DBeaver · pandas · matplotlib · seaborn · 
-scipy · scikit-learn · statsmodels · Git
+**Products**
+- Does order volume predict revenue, or does price tier explain divergence?
+- Does discounting drive order volume, or compress margin without demand impact?
+- Which products are structurally viable across quality, return rate, and revenue?
+
+**Customers**
+- Which market, age, and gender segments generate the highest lifetime value (LTV)?
+- Does membership tier correlate with retention quality?
+- What behavioral signals predict churn most reliably?
+
+**Orders**
+- Which temporal patterns drive revenue concentration?
+- Do session depth and engagement predict order value?
+- Are return rate differences across categories statistically significant?
+
+---
+
+## Key Findings
+
+Full analytical narrative and methodology available in the 
+[Kaggle notebook]([link](https://www.kaggle.com/code/taikchiba/e-commerce-data-analysis)).
+
+Selected highlights:
+- Discounting shows no significant demand effect across 13 of 14 
+  categories — the exception (Jewelry) shows a negative correlation
+- Gold tier customers churn at higher rates than Free tier despite 
+  34% higher average spend
+- Recency dominates churn prediction; satisfaction signals add 
+  marginal independent value
 
 ---
 
