@@ -1,4 +1,3 @@
-# main.py
 """
 E-Commerce Analysis Pipeline
 =============================
