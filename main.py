@@ -15,6 +15,7 @@ Modules:
     customers  — segmentation, churn, LTV, acquisition channel
     orders     — temporal patterns, behavioral analysis, return rates
     exports    — XLSX export for Tableau, LTV snapshots
+    anomaly    — anomaly detection: rule-based, SPC, Isolation Forest
 """
 
 import argparse
