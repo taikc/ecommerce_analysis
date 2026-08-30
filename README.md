@@ -32,13 +32,14 @@ ecommerce_analysis/
 ## Dataset
 
 Synthetic e-commerce dataset comprising four tables:
-```text
-| Table |      Rows |     Grain |
-| `product_summary` | 140 | One row per product |
-| `customers` | 8,000 | One row per customer |
-| `orders` | 25,000 | One row per transaction |
-| `monthly_revenue` | 75 | One row per month |
-```
+
+| Table  | Rows  | Grain  |
+|---|-------|---|
+| `product_summary`  | 140   | One row per product |
+| `customers`  | 8,000 | One row per product  |
+| `orders`  | 25,000   | One row per transaction  |
+| `monthly_revenue`  | 75      | One row per month  |
+
 Data is not included in this repository. To reproduce:
 1. Download the dataset from Kaggle [link](https://www.kaggle.com/datasets/meruvakodandasuraj/e-commerce-customer-behavior-and-sales-20202026/)
 Or via kagglehub ("meruvakodandasuraj/e-commerce-customer-behavior-and-sales-20202026")
@@ -127,6 +128,12 @@ scipy · scikit-learn · statsmodels · Git
 - Do session depth and engagement predict order value?
 - Are return rate differences across categories statistically significant?
 
+**Risk & Anomaly Detection**
+- Can behavioral signals distinguish deliberate return-policy exploitation from 
+  other patterns of churn or return behavior?
+- Where does multi-method consensus (rule-based, statistical process control, 
+  Isolation Forest) add confidence beyond any single detection approach?
+
 ---
 
 ## Key Findings
@@ -137,10 +144,15 @@ Full analytical narrative and methodology available in the
 Selected highlights:
 - Discounting shows no significant demand effect across 13 of 14 
   categories — the exception (Jewelry) shows a negative correlation
-- Gold tier customers churn at higher rates than Free tier despite 
-  34% higher average spend
-- Recency dominates churn prediction; satisfaction signals add 
-  marginal independent value
+- Gold tier customers churn at the highest rate of any tier (9.9%) despite 
+spending 34% more than Silver on average — a mid-tier retention trap, 
+not a straightforward loyalty-ladder pattern.
+- Recency and order-history depth dominate churn prediction; review 
+and return counts contribute secondary predictive value, while review 
+score itself shows no relationship with any measured behavior — likely a synthetic-data artifact.
+- Three-method consensus flags 80 customers (1.0% of base) as high-confidence 
+anomalies — return rate 5.8x population baseline, with population-level 
+churn suggesting deliberate policy exploitation rather than account abandonment.
 
 ---
 
