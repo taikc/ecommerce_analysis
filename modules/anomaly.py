@@ -120,6 +120,11 @@ def load_anomaly_data(conn=None, min_orders=3):
             df['payment_methods_used'] / np.log1p(df['total_orders'])
     ).round(4)
 
+    # Avg value ratio
+    df['return_value_ratio'] = (
+        df['avg_returned_value'].fillna(0) / df['avg_order_value']
+    ).round(4)
+
     # History depth label — used in reporting to contextualize flags
     df['history_depth'] = pd.cut(
         df['total_orders'],
@@ -156,7 +161,9 @@ def compute_baselines(df):
         'refund_velocity':  df['refund_velocity'],
         'order_velocity':   df['order_velocity'],
         'avg_order_value':  df['avg_order_value'],
-        'payment_methods_used': df['payment_methods_used']
+        'payment_methods_used': df['payment_methods_used'],
+        'payment_velocity': df['payment_velocity'],
+        'return_value_ratio': eligible['return_value_ratio']
     }
 
     baselines = {}
@@ -243,7 +250,8 @@ def rule_based_flags(df, baselines, strictness='moderate'):
     df['flag_order_velocity'] = df['order_velocity'] > ov_threshold
 
     # Flag 5 — Payment cycling: multiple payment methods
-    pv_threshold = df['payment_velocity'].quantile(0.90)
+    pv = baselines.get('payment_velocity', {})
+    pv_threshold = pv.get('p90', df['payment_velocity'].quantile(0.90))
     df['flag_payment_cycling'] = df['payment_velocity'] > pv_threshold
 
     df['rule_flag_count'] = (

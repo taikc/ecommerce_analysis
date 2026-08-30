@@ -116,7 +116,7 @@ def parse_args():
     )
     parser.add_argument(
         '--module',
-        choices=['validate', 'products', 'customers', 'orders', 'exports'],
+        choices=['validate', 'products', 'customers', 'orders', 'anomaly', 'exports'],
         help='Run a single module instead of the full pipeline'
     )
     parser.add_argument(
@@ -125,14 +125,14 @@ def parse_args():
         help='Skip validation stage (faster iteration during development)'
     )
     parser.add_argument(
+        '--skip-anomaly',
+        action='store_true',
+        help='Skip anomaly detection stage'
+    )
+    parser.add_argument(
         '--skip-exports',
         action='store_true',
         help='Skip export stage'
-    )
-    parser.add_argument(
-        '--anomaly',
-        action='store_true',
-        help='Run anomaly detection addendum'
     )
 
     return parser.parse_args()
@@ -156,6 +156,8 @@ def main():
             stage_customers()
         elif args.module == 'orders':
             stage_orders()
+        elif args.module == 'anomaly':
+            stage_anomaly()
         elif args.module == 'exports':
             # Exports need LTV data — run LTV pipeline first
             ltv_df, ltv_aggs = run_ltv_pipeline()
@@ -171,7 +173,7 @@ def main():
     customer_results = stage_customers()
     order_results    = stage_orders()
 
-    if args.anomaly:
+    if not args.skip_anomaly:
         anomaly_df, flagged = stage_anomaly()
 
     if not args.skip_exports:
